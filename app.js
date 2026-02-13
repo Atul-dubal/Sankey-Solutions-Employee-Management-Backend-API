@@ -14,6 +14,28 @@ app.use(cors());
 app.use(express.json());
 app.use(logger);
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Employee Management API",
+    status: "Running 🚀",
+    endpoints: {
+      employees: {
+        create: "POST /api/employees",
+        getAll: "GET /api/employees",
+        getById: "GET /api/employees/:id",
+        update: "PUT /api/employees/:id",
+        delete: "DELETE /api/employees/:id",
+      },
+      departments: {
+        create: "POST /api/departments",
+        getAll: "GET /api/departments",
+        delete: "DELETE /api/departments/:id",
+      },
+    },
+  });
+});
+
+
 app.use("/api/employees", employeeRoutes);
 app.use("/api/departments", departmentRoutes);
 
